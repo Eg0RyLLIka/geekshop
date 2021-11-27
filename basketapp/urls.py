@@ -11,4 +11,3 @@ urlpatterns = [
     re_path(r"^remove/(?P<pk>\d+)/$", basketapp.basket_remove, name="remove"),
     re_path(r"^edit/(?P<pk>\d+)/(?P<quantity>\d+)/$", basketapp.basket_edit, name="edit"),
 ]
-
