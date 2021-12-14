@@ -54,7 +54,9 @@ def register(request):
     content = {"title": title, "register_form": register_form}
     return render(request, "authnapp/register.html", content)
 
+
 from django.contrib.auth.decorators import login_required
+
 
 @login_required
 @transaction.atomic
@@ -74,6 +76,7 @@ def edit(request):
     content = {"title": title, "edit_form": edit_form, "profile_form": profile_form, "media_url": settings.MEDIA_URL}
 
     return render(request, "authnapp/edit.html", content)
+
 
 @transaction.atomic
 def edit(request):

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.db.models.signals import pre_delete, pre_save
 from django.dispatch import receiver
@@ -11,7 +12,6 @@ from basketapp.models import Basket
 from ordersapp.forms import OrderItemForm
 from ordersapp.models import Order, OrderItem
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 class OrderList(LoginRequiredMixin, ListView):
     model = Order
@@ -110,7 +110,8 @@ class OrderItemsUpdate(UpdateView):
             self.object.delete()
 
         return super(OrderItemsUpdate, self).form_valid(form)
-        
+
+
 class OrderDelete(DeleteView):
     model = Order
     success_url = reverse_lazy("ordersapp:orders_list")
@@ -142,8 +143,11 @@ def product_quantity_update_delete(instance, **kwargs):
     instance.product.quantity += instance.quantity
     instance.product.save()
 
-from mainapp.models import Product
+
 from django.http import JsonResponse
+
+from mainapp.models import Product
+
 
 def get_product_price(request, pk):
     if request.is_ajax():
