@@ -154,6 +154,7 @@ class TestUserManagement(TestCase):
         self.assertFormError(response, "register_form", "age", "Вы слишком молоды!")
         self.assertIn("Вы слишком молоды!", response.content.decode())
 
+
 class ProductsTestCase(TestCase):
     def test_product_print(self):
         product_1 = Product.objects.get(name="комфорт 1")
